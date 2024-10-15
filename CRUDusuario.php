@@ -3,14 +3,15 @@ require "configPDO.php";
 date_default_timezone_set('America/Sao_Paulo'); //define um fuso horario padão para o data_cadastro
 
 class usuario
-{
+{   private $ID_usuario;
     private $email;
     private $senha;
     private $tipo;
     private $data_cadastro;
 
-    function __construct($email, $senha, $tipo, $data_cadastro)
+    function __construct($ID_usuario, $email, $senha, $tipo, $data_cadastro)
     {   //sanitiza os dados para evitar ataques XSS
+        $this->$ID_usuario = $ID_usuario;
         $this->$email = htmlspecialchars($email);
         $this->$senha =  password_hash(htmlspecialchars($senha), PASSWORD_DEFAULT); // Criptografa a senha para armazenamento seguro. usar password_verify para comparar senhas
         $this->$tipo = htmlspecialchars(strtoupper($tipo)); //no banco o tipo é um string em upper case
@@ -21,7 +22,7 @@ class usuario
     function cadastrar(usuario $u)
     {
         $c = new config();
-        $pdo = $c->pdo;
+        $pdo = $c->getPDO();
         //consulta se o email com esse tipo já esta cadastrado
         $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email AND tipo = :tipo");
         $sql->bindValue(':email', $u->email);
@@ -47,7 +48,7 @@ class usuario
     {
         $senha_digitada = password_hash(htmlspecialchars($senha_digitada), PASSWORD_DEFAULT);
         $c = new config();
-        $pdo = $c->pdo;
+        $pdo = $c->getPDO();
 
         $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email AND senha = :senha AND tipo = :tipo");
         $sql->bindValue(':email', $u->email);

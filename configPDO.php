@@ -1,15 +1,26 @@
 <?php
-class config
+class Config
 {
-    private $dsn = "mysql:dbname=BdVidaSaudavel;host=localhost:3306";
-    private $username = "root";
-    private $password = "";
+    private $dsn;
+    private $username;
+    private $password;
+    private $pdo;
 
-    public $pdo = new PDO($dsn, $username, $password);
-    // $pdo = new PDO("mysql:dbname=BdVidaSaudavel;host=localhost:3306","root","cimatec");
-    function __destruct()
-    { // é chamado automaticamente quando o objeto é destruido ou no fim do script
-        // aparentemente é aconselhavel explicitar que a conexão seja pelo objeto seja atribuida a null
+    public function __construct()
+    {
+        $this->dsn = "mysql:dbname=BdVidaSaudavel;host=localhost:3306";
+        $this->username = "root";
+        $this->password = "cimatec";
+        $this->pdo = new PDO($this->dsn, $this->username, $this->password);
+    }
+
+    public function getPDO()
+    {
+        return $this->pdo;
+    }
+
+    public function __destruct()
+    {
         $this->pdo = null;
     }
 }
