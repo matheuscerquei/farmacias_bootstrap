@@ -10,10 +10,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body style="margin-left: 20%; margin-right: 20%;">
+<body style="margin-left: 25%; margin-right: 25%;">
   <div id="nav_bar_padrao" style="margin-bottom: 100px;"></div>
-  <section class="border border-3 border-light rounded p-3 row" style="padding: 50;">
-    <form action="cadastro_action.php" method="post">
+  <section class="border border-3 rounded p-5" style="border: rgba(255, 0, 0, .5);" >
+    <h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">CADASTRO DE PRODUTOS</h1>
+    <form action="cadastroProduto_action.php" method="post">
       <div class="mb-2 w-75">
         <label for="nameInput">Nome do produto</label>
         <input type="text" class="form-control" required>
@@ -53,6 +54,7 @@
           <input type="date" id="dataInput" class="form-control w-50" min="<?php echo date('Y-m-d'); ?>" placeholder="Selecione uma data...">
         </div>
       </div>
+      <input type="submit" value="SALVAR" class="btn btn-success btn-lg mt-4 ">
     </form>
   </section>
 

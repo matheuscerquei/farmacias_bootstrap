@@ -9,16 +9,16 @@ class produtos
     private $preco;
     private $quantidade;
     private $categoria;
-    private $validade;
+    private $data_validade;
 
-    function __construct($ID_produto, $nome, $preco, $quantidade, $categoria, $validade)
+    function __construct($ID_produto , $nome, $preco, $quantidade, $categoria, $data_validade)
     {
-        $this->$ID_produto = $ID_produto;
-        $this->$nome = htmlspecialchars($nome);
-        $this->$preco = htmlspecialchars($preco);
-        $this->$quantidade = htmlspecialchars($quantidade);
-        $this->$categoria = htmlspecialchars($categoria);
-        $this->$validade = htmlspecialchars($validade);
+        $this->ID_produto = $ID_produto;
+        $this->nome = htmlspecialchars($nome);
+        $this->preco = htmlspecialchars($preco);
+        $this->quantidade = htmlspecialchars($quantidade);
+        $this->categoria = htmlspecialchars($categoria);
+        $this->data_validade = htmlspecialchars($data_validade);
     }
 
     function cadastrarProduto(produtos $p)
@@ -27,7 +27,7 @@ class produtos
         $c = new config();
         $pdo = $c->getPDO();
 
-        $sql = $pdo->query("SELECT * FROM produtos WHERE nome = :nome AND categoria = :categoria;");
+        $sql = $pdo->prepare("SELECT * FROM produtos WHERE nome = :nome AND categoria = :categoria;");
         $sql->bindValue(':nome', $p->nome);
         $sql->bindValue(':categoria', $p->categoria);
 
@@ -46,10 +46,11 @@ class produtos
             $sql->bindValue(':preco', $p->preco);
             $sql->bindValue(':quantidade', $p->quantidade);
             $sql->bindValue(':categoria', $p->categoria);
-            $sql->bindValue(':data_validade', $p->validade);
+            $sql->bindValue(':data_validade', $p->data_validade);
 
             if ($sql->execute()) {
                 // cadastrardo com sucesso 
+                echo "funcionou";
                 return true;
             } else {
                 //cadastro falhou

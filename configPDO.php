@@ -10,7 +10,7 @@ class Config
     {
         $this->dsn = "mysql:dbname=BdVidaSaudavel;host=localhost:3306";
         $this->username = "root";
-        $this->password = "cimatec";
+        $this->password = "OgtoQmorr10#000***";
         $this->pdo = new PDO($this->dsn, $this->username, $this->password);
     }
 
