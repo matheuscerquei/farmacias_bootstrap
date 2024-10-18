@@ -50,7 +50,7 @@ class produtos
 
             if ($sql->execute()) {
                 // cadastrardo com sucesso 
-                echo "funcionou";
+                
                 return true;
             } else {
                 //cadastro falhou

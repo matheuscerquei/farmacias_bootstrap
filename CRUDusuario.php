@@ -12,10 +12,10 @@ class usuario
     function __construct($ID_usuario, $email, $senha, $tipo, $data_cadastro)
     {   //sanitiza os dados para evitar ataques XSS
         $this->$ID_usuario = $ID_usuario;
-        $this->$email = htmlspecialchars($email);
-        $this->$senha =  password_hash(htmlspecialchars($senha), PASSWORD_DEFAULT); // Criptografa a senha para armazenamento seguro. usar password_verify para comparar senhas
-        $this->$tipo = htmlspecialchars(strtoupper($tipo)); //no banco o tipo é um string em upper case
-        $this->$data_cadastro = htmlspecialchars(date('Y-m-d H:i:s')); //ver se funciona no sql
+        $this->email = htmlspecialchars($email);
+        $this->senha =  password_hash(htmlspecialchars($senha), PASSWORD_DEFAULT); // Criptografa a senha para armazenamento seguro. usar password_verify para comparar senhas
+        $this->tipo = htmlspecialchars(strtoupper($tipo)); //no banco o tipo é um string em upper case
+        $this->data_cadastro = htmlspecialchars(date('Y-m-d H:i:s')); //ver se funciona no sql
     }
 
     //cadastra um usuario se não hover um email cadastrato com o mesmo tipo
