@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "crudEstoque.php";
 
 $nome = $_POST['nomeInput'];
@@ -10,7 +10,8 @@ $data_validade = $_POST['dataInput'];
 $p = new produtos(null, $nome, $preco, $quantidade, $categoria, $data_validade);
 
 $salva = $p->cadastrarProduto($p);
-$cadastrado = true;
-header("Location.cadastroProduto.php" . urldecode($cadastrado));
+if ($salva = true) { // caso o retorno de cadastro seja verdadeiro retorna a cadastro
+    $cadastrado = true;
+    header("Location:cadastroProduto.php?cadastrado" . urlencode($cadastrado));
+}
 exit();
-?>

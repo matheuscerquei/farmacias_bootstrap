@@ -1,0 +1,7 @@
+.bg-imagem {
+    background-image: url(bg_farmacia.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+}
