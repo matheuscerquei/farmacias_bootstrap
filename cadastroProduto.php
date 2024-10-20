@@ -13,23 +13,23 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body style="margin-left: 25%; margin-right: 25%;" background="bg.jpg" >
+<body style="margin-left: 25%; margin-right: 25%; background-color: #83dbc9;">
   <div id="nav_bar_padrao" style="margin-bottom: 100px;"></div>
-  <section class="border border-3 rounded p-5" style="border: rgba(255, 0, 0, .5);">
+  <main class="border border-3 rounded p-5" style="border: rgba(255, 0, 0, .5); backdrop-filter: blur(5px); backdrop-filter: hue-rotate(80deg);">
     <h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">CADASTRAR PRODUTOS</h1>
     <form action="cadastroProduto_action.php" method="post">
       <div class="mb-2 w-75">
-        <label for="nameInput">Nome do produto</label>
-        <input type="text" name="nomeInput" class="form-control" required>
+        <label for="nomeInput">Nome do produto</label>
+        <input type="text" name="nomeInput" class="form-control" maxlength="30" placeholder="Nome" required>
       </div>
       <div class="mb-2 d-flex col">
         <div class="w-50">
           <label for="precoInput">Preço</label>
-          <input type="number" name="precoInput" step="0.01" min="0.01" class="form-control w-50" required>
+          <input type="number" name="precoInput" step="0.01" min="0.01" placeholder="Preço" class="form-control w-50" required>
         </div>
         <div class="w-50">
           <label for="quantidadeInput">Quantidade</label>
-          <input type="number" name="quantidadeInput" step="1" min="1" class="form-control w-50" required>
+          <input type="number" name="quantidadeInput" step="1" min="1" placeholder="Quantidade" class="form-control w-50" required>
         </div>
       </div>
       <div class="mb-2 d-flex col">
@@ -59,7 +59,7 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
       </div>
       <input type="submit" id="salvar" value="SALVAR" class="btn btn-success btn-lg mt-4 ">
     </form>
-  </section>
+  </main>
   <script>
     fetch('nav_bar_padrao.html')
       .then(response => response.text())
@@ -74,10 +74,13 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
 </html>
 <script>
   const botao = document.getElementById('salvar');
-  var cadastrado = <?php echo json_encode($cadastrado); ?>;
+  var cadastrado = <?php echo json_decode($cadastrado); ?> ?? null;
 
   botao.addEventListener('click', function() {
-    if(cadastrado = 1){
-      alert('CADASTRADO COM SUCESSO!!')}
-    });
+    if (cadastrado == 1) {
+      alert('CADASTRADO COM SUCESSO!!')
+    } else if (cadastrado == 0) {
+      alert('ERRO: NOME E CATEGORIA JÁ CADASTRADOS TENTE NOVAMENTE')
+    }
+  });
 </script>

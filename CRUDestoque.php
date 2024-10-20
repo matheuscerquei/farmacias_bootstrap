@@ -4,14 +4,14 @@ require "configPDO.php";
 class produtos
 {
 
-    private $ID_produto;
-    private $nome;
-    private $preco;
-    private $quantidade;
-    private $categoria;
-    private $data_validade;
+    protected $ID_produto;
+    protected $nome;
+    protected $preco;
+    protected $quantidade;
+    protected $categoria;
+    protected $data_validade;
 
-    function __construct($ID_produto , $nome, $preco, $quantidade, $categoria, $data_validade)
+    function __construct($ID_produto = null, $nome = null, $preco = null, $quantidade = null, $categoria = null, $data_validade = null)
     {
         $this->ID_produto = $ID_produto;
         $this->nome = htmlspecialchars($nome);
@@ -20,7 +20,9 @@ class produtos
         $this->categoria = htmlspecialchars($categoria);
         $this->data_validade = htmlspecialchars($data_validade);
     }
-
+}
+class crudEstoque extends produtos
+{
     function cadastrarProduto(produtos $p)
     {
 
@@ -30,12 +32,7 @@ class produtos
         $sql = $pdo->prepare("SELECT * FROM produtos WHERE nome = :nome AND categoria = :categoria;");
         $sql->bindValue(':nome', $p->nome);
         $sql->bindValue(':categoria', $p->categoria);
-
-        if (!$sql->execute()) {
-            // caso haja uma falha na conexão
-            echo '<script>console.log("falha na conexão com o banco")</script>';
-            return false;
-        }
+        $sql->execute();
         if ($sql->rowCount() > 0) {
             // produto com nome e categoria já cadastradas
             return false;
@@ -50,17 +47,12 @@ class produtos
 
             if ($sql->execute()) {
                 // cadastrardo com sucesso 
-                
                 return true;
-            } else {
-                //cadastro falhou
-                echo '<script>console.log("falha na conexão com o banco")</script>';
-                return false;
             }
         }
     }
 
-    function retornaTodosProdutos() //retorna os protudos cadstrados como uma lista ordenada
+    function  retornaTodosProdutos() //retorna os protudos cadstrados como uma lista ordenada
     {
         $c = new config();
         $pdo = $c->getPDO();
@@ -75,10 +67,6 @@ class produtos
             $lista = [];
             $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $lista;
-        } else {
-            // houve algum erro na conexão com o banco
-            echo '<script>console.log("")</script>';
-            return false;
         }
     }
 
@@ -90,16 +78,12 @@ class produtos
         $sql = $pdo->prepare("SELECT * FROM produtos WHERE nome = :nome");
         $sql->bindValue(':nome', $p->nome);
 
-        if (!$sql->execute()) {
-            echo '<script>console.log("falha na conexão com o banco")</script>';
-            return false;
-        }
         if ($sql->rowCount() > 0) {
             // retorna os registros encontrados
             $lista = [];
             $lista = $sql->fetchAll();
             return $lista;
-        }else{
+        } else {
             // nome não encontrado no banco
             return false;
         }
