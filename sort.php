@@ -1,13 +1,12 @@
 <?php
 require "crudEstoque.php";
 
-$p = new crudEstoque(null, $_POST['nomeInput']);
-$lista = $p->retornaTodosProdutos();
+$p = new crudEstoque();
+$lista = $p->retornaTodosProdutos(); // Obtém todos os produtos
 
 if (isset($_GET['sortBy'])) {
-
     usort($lista, function ($a, $b) {
-        if ($_GET['sortBy'] === 'validade') { // ordena por data
+        if ($_GET['sortBy'] === 'data_validade') { // ordena por data
             return strtotime($a['data_validade']) <=> strtotime($b['data_validade']);
         }
         return $a[$_GET['sortBy']] <=> $b[$_GET['sortBy']]; // senão for data ordena normalmente
@@ -16,3 +15,4 @@ if (isset($_GET['sortBy'])) {
 
 header('Content-Type: application/json');
 echo json_encode($lista);
+?>

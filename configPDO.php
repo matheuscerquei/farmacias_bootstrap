@@ -8,9 +8,9 @@ class Config
 
     public function __construct()
     {
-        $this->dsn = "mysql:dbname=BdVidaSaudavel;host=localhost:3306";
+        $this->dsn = "mysql:dbname=BdVidaSaudavel;host=localhost:3307"; //mudei a porta para fucionar no meu pc
         $this->username = "root";
-        $this->password = "OgtoQmorr10#000***"; //OgtoQmorr10#000***
+        $this->password = ""; //OgtoQmorr10#000*** 
         $this->pdo = new PDO($this->dsn, $this->username, $this->password);
     }
 

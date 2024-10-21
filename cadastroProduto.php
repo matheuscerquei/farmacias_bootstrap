@@ -17,7 +17,7 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
   <div id="nav_bar_padrao" style="margin-bottom: 100px;"></div>
   <main class="border border-3 rounded p-5" style="border: rgba(255, 0, 0, .5); backdrop-filter: blur(5px); backdrop-filter: hue-rotate(80deg);">
     <h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">CADASTRAR PRODUTOS</h1>
-    <form action="cadastroProduto_action.php" method="post">
+    <form action="cadastroProduto_action.php" method="post" id="formCadastro">
       <div class="mb-2 w-75">
         <label for="nomeInput">Nome do produto</label>
         <input type="text" name="nomeInput" class="form-control" maxlength="30" placeholder="Nome" required>
@@ -54,7 +54,7 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
         </div>
         <div class="w-50">
           <label for="dataInput">Validade</label>
-          <input type="date" name="dataInput" class="form-control w-50" min="<?php echo date('Y-m-d'); ?>" placeholder="Selecione uma data...">
+          <input type="date" name="dataInput" class="form-control w-50" min="<?php echo date('Y-m-d'); ?>" placeholder="Selecione uma data..." required>
         </div>
       </div>
       <input type="submit" id="salvar" value="SALVAR" class="btn btn-success btn-lg mt-4 ">
@@ -73,14 +73,14 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
 
 </html>
 <script>
-  const botao = document.getElementById('salvar');
-  var cadastrado = <?php echo json_decode($cadastrado); ?> ?? null;
+  // Alerta de produto cadastrado com sucesso
+  document.addEventListener('DOMContentLoaded', function() {
+    var cadastrado = <?php echo json_encode($cadastrado); ?> ?? null;
 
-  botao.addEventListener('click', function() {
-    if (cadastrado == 1) {
-      alert('CADASTRADO COM SUCESSO!!')
-    } else if (cadastrado == 0) {
-      alert('ERRO: NOME E CATEGORIA JÁ CADASTRADOS TENTE NOVAMENTE')
+    if (cadastrado == "1") {
+      alert('CADASTRADO COM SUCESSO!! (*^_^*)');
+    } else if (cadastrado != null) {
+      alert('ERRO: PRODUTO IDÊNTICO JÁ CADASTRADO TENTE NOVAMENTE (｡>﹏<｡)');
     }
   });
 </script>

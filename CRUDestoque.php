@@ -29,12 +29,13 @@ class crudEstoque extends produtos
         $c = new config();
         $pdo = $c->getPDO();
 
-        $sql = $pdo->prepare("SELECT * FROM produtos WHERE nome = :nome AND categoria = :categoria;");
+        $sql = $pdo->prepare("SELECT * FROM produtos WHERE nome = :nome AND categoria = :categoria AND data_validade = :data_validade");
         $sql->bindValue(':nome', $p->nome);
         $sql->bindValue(':categoria', $p->categoria);
+        $sql->bindValue(':data_validade', $p->data_validade);
         $sql->execute();
         if ($sql->rowCount() > 0) {
-            // produto com nome e categoria já cadastradas
+            // produto com nome, categoria e validade já cadastradas
             return false;
         } else {
             //cadastra o produto novo 
@@ -58,33 +59,49 @@ class crudEstoque extends produtos
         $pdo = $c->getPDO();
 
         $sql = $pdo->query("SELECT * FROM produtos");
-        if (!$sql->execute()) {
-            echo '<script>console.log("falha na conexão com o banco")</script>';
-            return false;
-        }
+        $sql->execute();
 
         if ($sql->rowCount() > 0) {
             $lista = [];
             $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $lista;
+        } else {
+            //falha na consulta ao banco
+            return false;
         }
     }
 
-    function retornaPorNome(produtos $p) // retorna todos regsitros encontrados com um mesmo nome
+    function retornaPorNome($nome) // retorna todos regsitros encontrados com um mesmo nome
     {
         $c = new config();
         $pdo = $c->getPDO();
 
-        $sql = $pdo->prepare("SELECT * FROM produtos WHERE nome = :nome");
-        $sql->bindValue(':nome', $p->nome);
+        $sql = $pdo->prepare("SELECT * FROM produtos WHERE nome LIKE :nome");
+        $sql->bindValue(':nome', $nome."%");
+        $sql->execute();
 
         if ($sql->rowCount() > 0) {
             // retorna os registros encontrados
             $lista = [];
-            $lista = $sql->fetchAll();
+            $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $lista;
         } else {
             // nome não encontrado no banco
+            return false;
+        }
+    }
+    function excluirProduto(produtos $p){
+        $c = new config();
+        $pdo = $c->getPDO();
+
+        $sql = $pdo->prepare("DELETE FROM produtos WHERE ID_produto = :ID_produto");
+        $sql->bindValue(':ID_produto', $p->ID_produto);
+
+        if($sql->execute()){
+            // excluido com sucesso
+            return true;
+        }else{
+            // falhou
             return false;
         }
     }
