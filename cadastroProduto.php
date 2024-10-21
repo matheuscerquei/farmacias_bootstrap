@@ -6,14 +6,14 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
 
 <head>
   <meta charset="UTF-8">
-  <meta name="author" content="Augusto Mizu">
+  <meta name="author" content="Matheus Cerqueira Monteiro">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="image/x-png" href="./imgens/icon_navegador2.png">
   <title>Estoque</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body style="margin-left: 25%; margin-right: 25%; background-color: #83dbc9;">
+<body style="margin-left: 25%; margin-right: 25%; background-color: #ffffff;">
   <div id="nav_bar_padrao" style="margin-bottom: 100px;"></div>
   <main class="border border-3 rounded p-5" style="border: rgba(255, 0, 0, .5); backdrop-filter: blur(5px); backdrop-filter: hue-rotate(80deg);">
     <h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">CADASTRAR PRODUTOS</h1>
@@ -78,9 +78,9 @@ $cadastrado = isset($_GET['cadastrado']) ? $_GET['cadastrado'] : null;
     var cadastrado = <?php echo json_encode($cadastrado); ?> ?? null;
 
     if (cadastrado == "1") {
-      alert('CADASTRADO COM SUCESSO!! (*^_^*)');
+      alert('CADASTRADO COM SUCESSO!!');
     } else if (cadastrado != null) {
-      alert('ERRO: PRODUTO IDÊNTICO JÁ CADASTRADO TENTE NOVAMENTE (｡>﹏<｡)');
+      alert('ERRO: PRODUTO IDÊNTICO JÁ CADASTRADO TENTE NOVAMENTE');
     }
   });
 </script>

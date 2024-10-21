@@ -12,7 +12,7 @@ $validade = urldecode($_GET['validade']);
 
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Augusto Mizu">
+    <meta name="author" content="Matheus Cerqueira Monteiro">
     <link rel="shortcut icon" type="image/x-png" href="./imgens/icon_navegador2.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar</title>
@@ -20,7 +20,7 @@ $validade = urldecode($_GET['validade']);
 
 </head>
 
-<body style="margin-left: 25%; margin-right: 25%; background-color: #83dbc9;">
+<body style="margin-left: 25%; margin-right: 25%; background-color: #ffffff;">
     <div id="nav_bar_padrao" style="margin-bottom: 100px;"></div>
     <main class="border border-3 rounded p-5" style="border: rgba(255, 0, 0, .5); backdrop-filter: blur(5px); backdrop-filter: hue-rotate(80deg);">
         <h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
@@ -79,7 +79,7 @@ $validade = urldecode($_GET['validade']);
     <script>
         ////////// caixa para corfirmar edição
         function confirmarEdicao(id) {
-            const confirmacao = confirm("Você tem certeza que deseja editar este produto? (ㆆ_ㆆ)");
+            const confirmacao = confirm("Você tem certeza que deseja editar este produto?");
             if (confirmacao) {
                 // Redireciona para o script de exclusão com confirmação
                 window.location.href = `editarProduto_action.php?id=${id}&confirmar=true`;

@@ -15,7 +15,7 @@ if ($lista == false || empty($_GET['nomeInput'])) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Augusto Mizu">
+    <meta name="author" content="Matheus Cerqueira Monteiro">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-png" href="./imgens/icon_navegador2.png">
     <title>Consulta</title>
@@ -28,7 +28,7 @@ if ($lista == false || empty($_GET['nomeInput'])) {
     </style>
 </head>
 
-<body style="margin-left: 20%; margin-right: 20%; background-color: #83dbc9;">
+<body style="margin-left: 20%; margin-right: 20%; background-color: #ffffff;">
     <div id="nav_bar_padrao" style="margin-bottom: 100px;"></div>
     <main>
         <form action="pesquisaProduto.php" method="get">

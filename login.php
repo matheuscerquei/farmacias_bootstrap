@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="author" content="Augusto Mizu">
+  <meta name="author" content="Matheus Cerqueira Monteiro">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="image/x-png" href="./imgens/icon_navegador2.png">
   <title>Login</title>
